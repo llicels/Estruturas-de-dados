@@ -1,6 +1,8 @@
 #include <stdio.h>
 #define MAX 10
 
+//ordem logica == ordem fisica
+
 typedef struct 
 {
     int chave;
