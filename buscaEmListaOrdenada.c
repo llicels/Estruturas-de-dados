@@ -100,6 +100,35 @@ int inserirListaOrd (LISTA *lista, ELEMENTO el){
     return 0;
 }
 
+int buscaBinaria(LISTA *lista, int chaveProcurada){
+    int esq, dir, meio;
+
+    //primeiro index
+    esq = 0;
+
+    //ultimo index
+    dir = lista->tamanho-1;
+
+    //enquanto o primeiro index for menor/igual que o ultimo index
+    while(esq <= dir){
+        meio = ((esq+dir)/2);
+
+        //se o elemento estiver no meio
+        if (lista->elementos[meio].chave == chaveProcurada) return meio;
+        else{
+
+            //se o elemento buscado for maior que o meio se "exclui" toda sua esquerda
+            if (lista->elementos[meio].chave < chaveProcurada) esq = meio+1;
+
+            //se o elemento buscado for menor que o meio se "exclui" toda sua direita
+            else dir = meio-1;
+        }
+    }
+
+    return -1;
+}
+
+
 int main (){
      LISTA minha_lista;
 
@@ -111,6 +140,16 @@ int main (){
 	 }
 
     exibir_lista(&minha_lista);
+
+    int indexElementoBuscado = buscaBinaria(&minha_lista, 9);
+
+    if(indexElementoBuscado != -1){
+        printf("\nO elemento buscado esta na posicao %d", indexElementoBuscado);
+    }else{
+        printf("\nO elemento buscado nao esta na lista");
+    }
+
+    
 
     
     return 0;
