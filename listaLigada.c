@@ -1,9 +1,25 @@
+//busca
+/* pos = L->inicio
+    while(pos != 0 && L->elementos[pos].reg.chave<chaveBuscada)
+    {
+        pos = L->elementos[pos].prox;
+    }
+    if(L->elementos[pos].reg.chave == chaveBuscada)
+        {
+            return pos;
+        }
+    else return -1;
+*/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 
 #define MAX 50
 #define INVALIDO -1
+
+//estática 
 
 typedef struct 
 {
@@ -82,6 +98,32 @@ bool inserirLista(LISTA *lista, REGISTRO reg){
     return true;
 }
 
+int busca(LISTA *lista, int chaveBuscada){
+    int pos = lista->inicio;
+
+    /*se a lista não estiver ordenada:
+    while(pos != INVALIDO)
+    {
+        if(lista->elementos[pos].reg.chave == chaveBuscada)
+        {
+            return pos;
+        }
+        pos = lista->elementos[pos].prox;
+    }
+    return INVALIDO;
+    */
+    while(pos != INVALIDO && lista->elementos[pos].reg.chave<chaveBuscada)
+    {
+        pos = lista->elementos[pos].prox;
+    }
+    if(lista->elementos[pos].reg.chave == chaveBuscada)
+        {
+            return pos;
+        }
+    else return INVALIDO;
+}
+
+
 int excluirLista(LISTA *lista, int chave) {
 	int anterior = INVALIDO;
 	int pos = lista->inicio;
@@ -111,6 +153,16 @@ int excluirLista(LISTA *lista, int chave) {
 	
 }
 
+int reinicializar(LISTA *lista){
+    for (int i = 0; i<MAX; i++){
+        REGISTRO reg0 = {.chave = 0};
+        lista->elementos[i].reg = reg0;
+        lista->elementos[i].prox = i+1;
+    }
+    inicializarLista(lista);
+    printf("Lista reinicializada");
+}
+
 
 int main(){
     LISTA lista;
@@ -120,8 +172,17 @@ int main(){
         REGISTRO r = {.chave = rand()%100};
         printf("Inserindo elemento com chave = %d\n\t", r.chave);
         inserirLista(&lista, r);
-        exibirLista(&lista);
+        //exibirLista(&lista);
     }
+
+    REGISTRO r = {.chave = 32};
+    inserirLista(&lista, r);
+    exibirLista(&lista);
+
+    int encontrada = busca(&lista, 34);
+    printf("Elemento de chave 34 encontrado na posicao fisica: %d\n", encontrada);
+
+    reinicializar(&lista);
 
     while (lista.inicio != INVALIDO) {
 		excluirLista(&lista, lista.elementos[lista.inicio].reg.chave);
