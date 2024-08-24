@@ -116,45 +116,75 @@ bool excluir(LISTA *lista, int chave){
      return true;
 }
 
-REGISTRO *listaBusca(LISTA *lista, int chave){
+REGISTRO *listaBuscaOrd(LISTA *lista, int chave){
     lista->cabeca->reg.chave = chave;
     ELEMENTO *elAtual = lista->cabeca->prox;
     while(elAtual->reg.chave < chave){
         elAtual = elAtual->prox;
         }
-    ELEMENTO *candidato = elAtual->prox;
+    ELEMENTO *candidato = elAtual;
     if(candidato == lista->cabeca){
+        return NULL;
+    }
+    if(candidato->reg.chave != chave){
         return NULL;
     }
     return &candidato->reg;
 }
 
+REGISTRO *listaBuscaSeq(LISTA *lista, int chave){
+    lista->cabeca->reg.chave = chave;
+    ELEMENTO *elAtual = lista->cabeca->prox;
+    while(elAtual->reg.chave != chave){
+        elAtual = elAtual->prox;
+        }
+    ELEMENTO *candidato = elAtual;
+    if(candidato == lista->cabeca){
+        return NULL;
+    }
+    
+    return &candidato->reg;
+}
+
+
 void exibir(LISTA *lista){
     ELEMENTO *atual = lista->cabeca->prox;
-    printf("Tamanho: %d, Elementos: ", tamanho(lista));
+    printf("Tamanho: %d\n", tamanho(lista));
 
 
     while (atual != lista->cabeca)
     {
-        printf("%d \n", atual);
+        printf("%d \n", atual->reg.chave);
         atual = atual->prox;
     }
      
 }
 
 
-int main(){
+int main(int argc, char*argv[]){
     LISTA lista;
 
     inicializarLista(&lista);
 
     for (int i = 0; i < 6; i++){
         REGISTRO r = {.chave = rand()%100};
-        printf("\tInserindo elemento com chave = %d\n", r.chave);
+        //printf("\tInserindo elemento com chave = %d\n", r.chave);
         inserir(&lista, r);
     }
 
     int tam = tamanho(&lista);
+    printf("\nO tamanho da lista e %d\n", tam);
+    exibir(&lista);
+
+    int elbuscado = strtol(argv[1], NULL, 10);
+    REGISTRO *encontrado = listaBuscaOrd(&lista, elbuscado);
+    printf("\tElemento encontrado em %d\n", encontrado);
+    excluir(&lista, elbuscado);
+    exibir(&lista);
+
+
+    reiniciarLista(&lista);
+    tam = tamanho(&lista);
     printf("\nO tamanho da lista e %d\n", tam);
 
 
