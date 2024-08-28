@@ -1,0 +1,27 @@
+LIFO -> last in first out
+
+operaçoes:
+    - push (adicionar)
+    - pop (remover)
+    - inicializar
+    - reinicializar
+    - tamanho
+    - exibir
+
+↠ diferente da lista não possui função de busca
+
+↠ usada para empilhar argumentos
+
+PILHA ESTÁTICA
+↠ um array com MAX
+↠ um ponteiro que indica o topo
+
+bool PUSH(20)
+    //antes é preciso verificar se a pilha não está cheia
+    topo++
+    elementos[topo] = 20
+
+bool POP(*el)
+    //antes é preciso verificar se a pilha não está cheia
+    *el = elementos[topo]
+    topo--
