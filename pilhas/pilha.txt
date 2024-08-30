@@ -25,3 +25,50 @@ bool POP(*el)
     //antes é preciso verificar se a pilha não está cheia
     *el = elementos[topo]
     topo--
+
+PILHA DUPLA ESTÁTICA
+↠ possui 2 topos (topo1 e topo2)
+↠ uma pilha começa do fim e vai até o começo e outra vai do começo até o fim
+
+↠ bool PUSH(reg, P1) //é preciso especificar a pilha
+↠ bool POP(*el, P1)
+
+↠ se topo2 - topo1 = 1 A PILHA ESTÁ CHEIA 
+
+PILHA1: PUSH(topo1++) POP(topo1--)
+PILHA2: PUSH(topo2--) POP(topo2++)
+
+PILHA DINAMICA
+operaçoes:
+    - push (adicionar)
+    - pop (remover)
+    - inicializar
+    - reinicializar
+    - tamanho
+    - exibir
+    - estaVazia
+    - peek (espiar o elemento que está no topo)
+
+modelo logico:  
+    topo → 7 → 2 → 35 → 10 → NULL
+
+td struct{
+    ELEMENTO *topo;
+} PILHA
+
+td struct aux{
+    struct aux*ptr;
+    REGISTRO reg;
+} ELEMENTO
+
+void inicia(PILHA*p){
+    p.topo = NULL;
+}
+
+int tamanho(PILHA*p){
+    ELEMENTO el = p.topo;
+    int t = 0;
+    while (el.reg != NULL){
+        
+    }
+}
