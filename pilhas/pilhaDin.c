@@ -46,7 +46,7 @@ void exibir (PILHA *p)
     ELEMENTO *el = p->topo;
 
     //o mesmo que falar el != null
-    while (el)
+    while (el != NULL)
     {
         printf("%d ", el->reg.chave);
         el = el->prox;
@@ -57,7 +57,7 @@ void exibir (PILHA *p)
 bool push(PILHA *p, REGISTRO reg)
 {
     ELEMENTO *novoEl = malloc(sizeof(ELEMENTO));
-    if (!novoEl) return false;
+    if (novoEl == NULL) return false;
 
     novoEl->reg = reg;
     novoEl->prox = p->topo;
@@ -68,12 +68,12 @@ bool push(PILHA *p, REGISTRO reg)
 
 bool pilhaVazia(PILHA *p)
 {
-    if (!p->topo) return true;
+    return p->topo == NULL;
 }
 
 bool pop(PILHA *p, REGISTRO *reg)
 {
-    if (!reg) return false;
+    if (reg == NULL) return false;
     if (pilhaVazia(p)) return false;
 
     ELEMENTO *apagar = p->topo;
@@ -81,18 +81,85 @@ bool pop(PILHA *p, REGISTRO *reg)
     *reg = p->topo->reg;
     p->topo = p->topo->prox;
     free(apagar);
+
+    return true;
 }
 
 REGISTRO* peek(PILHA *p)
 {
-    if (!p->topo) return NULL;
-    else return &p->topo->reg;
+    if (p->topo == NULL) return NULL;
+    else return &(p->topo->reg);
+}
+
+ void reverter(PILHA *p)
+ {
+    PILHA *pilhaAux1= malloc(sizeof(PILHA));
+    PILHA *pilhaAux2= malloc(sizeof(PILHA));
+
+    inicializar(pilhaAux1);
+    inicializar(pilhaAux2);
+
+    REGISTRO reg;
+
+    while(p->topo != NULL)
+    {
+        pop(p, &reg);
+        push(pilhaAux1, reg);
+    }
+
+    while(pilhaAux1->topo != NULL)
+    {
+        pop(pilhaAux1, &reg);
+        push(pilhaAux2, reg);
+    }
+
+    while(pilhaAux2->topo != NULL)
+    {
+        pop(pilhaAux2, &reg);
+        push(p, reg);
+    }
+
+    printf("\nPilha revertida!\n");
+    exibir(p);
+    free(pilhaAux1);
+    free(pilhaAux2);
+}
+
+void ordenar(PILHA *p){
+    PILHA*pilhaAux1 = malloc(sizeof(PILHA));
+
+    REGISTRO reg;
+    inicializar(pilhaAux1);
+
+    while(p->topo != NULL)
+    {
+        REGISTRO temp = p->topo->reg;
+        pop(p, &reg);
+
+        while (pilhaAux1->topo != NULL && pilhaAux1->topo->reg.chave < temp.chave)
+        {
+            pop(pilhaAux1, &reg);
+            push(p, reg);
+        }
+        push(pilhaAux1, temp);
+        
+    }
+
+    reverter(pilhaAux1);
+    while(pilhaAux1->topo != NULL)
+    {
+        pop(pilhaAux1, &reg);
+        push(p, reg);
+    }
+    printf("\nPilha ordenada!");
+    exibir(p);
+
 }
 
 void reinicializar(PILHA *p)
 {
     ELEMENTO *el = p->topo;
-    while (el)
+    while (el != NULL)
     {
         ELEMENTO *apagar = el;
         el = el->prox;
@@ -100,7 +167,7 @@ void reinicializar(PILHA *p)
     }
     p->topo = NULL;
     
-    printf("\n A pilha foi reiniciada");
+    printf("\nA pilha foi reiniciada");
 }
 
 int main(){
@@ -117,12 +184,18 @@ int main(){
         exibir(aPilha);
     }
 
-    printf("O tamanho da pilha e %d \n", tamanho(aPilha));
+    //reverter(aPilha);
 
-    printf("\nTopo = %d\n", peek(aPilha)->chave);
+    ordenar(aPilha);
 
-    REGISTRO regTopo;
-    pop(aPilha, &regTopo);
+    // printf("O tamanho da pilha e %d \n", tamanho(aPilha));
+
+    // printf("\nTopo = %d\n", peek(aPilha)->chave);
+
+    // REGISTRO regTopo;
+    // pop(aPilha, &regTopo);
+    // exibir(aPilha);
+    // printf("\nTopo = %d\n", peek(aPilha)->chave);
 
     reinicializar(aPilha);
     return 0;

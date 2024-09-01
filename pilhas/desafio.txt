@@ -1,0 +1,47 @@
+void reverter(*p){
+    PILHA pilhaAux1, pilhaAux2;
+
+    REGISTRO reg = p->topo.reg;
+    while(p->topo.prox)
+    {
+        push(pilhaAux, &reg);
+        pop(p, &reg);
+        reg = p->topo.reg;
+    }
+
+    //depois a pilhaAux2 recebe o conteudo da pilhaAux1 e a pilha og recebe de volta
+
+}
+
+void ordenar(PILHA*p){
+    PILHA *pilhaAux = malloc(sizeof(pilha));
+
+    inicializar(pilhaAux);
+
+    REGISTRO reg;
+
+    while(p->topo != NULL)
+    {
+        if(pilhaAux->topo.reg.chave < p->topo.reg.chave)
+        {
+            pop(p, &reg);
+            push(p, reg);
+        }
+    }
+
+}
+
+pilha* pilhaAux1, pilhaAux2, pilhaAux3;
+//define topo da pilhaAux1 como 0 e da 2 como max int
+ELEMENTO*a = peek(p);
+se a.reg.chave > pilhaAux.topo.reg.chave
+    pop(p, &a.reg);
+    push(pilhaAux, a.reg);
+
+se a.reg.chave < pilhaAux.topo.reg.chave
+    pop(p,&a.reg);
+    push(pilhaAux2, a.reg);
+
+se não
+    pop(p, &a.reg);
+    push(pilhaAux3, a.reg);
