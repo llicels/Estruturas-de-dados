@@ -1,0 +1,39 @@
+FILA Estática
+
+- FIFO
+
+Operações:
+- Enfileirar (enqueue)
+- Desenfileirar (Dequeue)
+- Tamanho
+- Inicializar
+- Reinicializar
+- Exibir
+
+max registros
+fila{
+    registros[]
+    inicio --> pode ser qualquer posição do array
+    tamanho
+}
+
+desenfileirar(){
+    --> pega o inicio, remove e define o proximo elemento como inicio
+}
+
+enfileirar(){
+
+    se pos >= tamanho
+        posicao insercao = (inicio + tamanho)%max
+    se nao
+        posicao insercao = inicio+tamanho
+
+}
+
+FILA DE PRIORIDADE
+ - dois vetores: maior prioridade e menor prioridade
+ ou
+ - inicio 1 INICIO 2 tam 1 TAM 2
+ ou 
+ - altera a estrutura do REGISTRO adicionando um campo PRIORIDADE
+ -->não é ideal

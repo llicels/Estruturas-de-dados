@@ -93,6 +93,8 @@ REGISTRO* peek(PILHA *p)
 
  void reverter(PILHA *p)
  {
+
+    //se quiser só exibir a pilha invertida e nao inverte-la de fato, é só exibir a pilhaAux1, não precisa da pilha Aux2
     PILHA *pilhaAux1= malloc(sizeof(PILHA));
     PILHA *pilhaAux2= malloc(sizeof(PILHA));
 
