@@ -1,0 +1,37 @@
+inserir no começo e remover no fim
+implementação dinâmica com cabeça, circular e duplamente ligada
+
+pode-se enfileirar tanto no começo como no fim 
+e também desenfileirar no começo ou no fim
+
+o elemento possui um ponteiro para o reg, prox e ant(que está mais na "frente da fila")
+
+possui cabeça para não ter que lidar com ponteiros nulos
+
+o prox do ultimo el aponta para a cabeça
+o anterior da cabeça aponta para o ultimo el da fila
+o anterior do primeiro elemento aponta para a cabeça
+
+-------aaaaaaaa----aaaaaa---aaaaaa-------aaa--aaa--aaa---aaaa-aaaaa--aaa-aaaaa-aaaa--------aaaaaaa-aaaaa-----aaaaaaa-aaaaaa
+
+@@@ pro ep @@@
+inserindo no inicio
+    novo elemento:
+        anterior = cabeça
+        prox = antigo inicio da fila ou antigo prox da cabeça
+    
+    antigo inicio (antigo prox da cabeça):
+        anterior = novo elemento
+    
+     cabeça:
+        prox = novo elemento
+
+removendo no fim:
+    fim = anterior da cabeça
+
+    cabeça:
+        prox = anterior do fim
+    
+    novo fim:
+        prox = cabeça
+
