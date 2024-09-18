@@ -1,0 +1,75 @@
+- estatica(MAX)
+- k pilhas
+- push (reg, k)
+- pop (reg,k)
+- não circular
+
+MAX = 12 NP = 4
+12/4 = cada pilha tem 3 espaços
+
+int topo[NP+1]
+
+             NP*tamPilha - 1
+    topo[0]=-1
+    topo[1]=2
+    topo[2]=5
+    topo[3]=8
+
+int base[NP+1]
+    base[0]=0
+    base[1]=2
+    base[2]=6
+    base[3]=9
+
+    topo[NP] = base[NP+1]-1
+
+deslocamentoDir (tamanho diminui)
+    adiciona na base
+    copiar todos os registros 1 para a direita
+    topo++
+
+    !!!prestar atenção se a pilha estiver cheia!!!
+
+deslocamentoEsq (tamanho aumenta)
+    subtrai na base
+
+🌿🍀🍃🌿🍀🍃🌿🍀🍃🌿🍀🍃🌿🍀🍃🌿🍀🍃🌿🍀🍃🌿🍀🍃🌿🍀🍃🌿🍀🍃🌿🍀🍃🌿🍀🍃🌿🍀🍃🌿🍀🍃🌿🍀🍃🌿🍀🍃🌿🍀🍃
+🐈‍⬛🫐🐈‍⬛🫐🐈‍⬛🫐🐈‍⬛🫐🐈‍⬛🫐🐈‍⬛🫐🐈‍⬛🫐🐈‍⬛🫐🐈‍⬛🫐🐈‍⬛🫐🐈‍⬛🫐🐈‍⬛🫐🐈‍⬛🫐🐈‍⬛🫐🐈‍⬛🫐🐈‍⬛🫐🐈‍⬛🫐🐈‍⬛🫐🐈‍⬛🫐🐈‍⬛🫐🐈‍⬛🫐🐈‍⬛🫐🐈‍⬛🫐🐈‍⬛🫐🐈‍⬛🫐🐈‍⬛
+
+-----------PSEUDOCÓDIGO:
+push(reg, k){
+    se pilha k cheia:
+        deslocamentos para cada pilha entre k+1 e NP-1 (desloca para direita)
+    se a pilha continua cheia:
+        deslocamentos para cada pilha entre 0 e k (desloca para a esquerda)
+    se continuar cheia:
+        retorna falso
+
+pop(reg, k){
+    if [topo] < [base] retorna falso (pilha vazia)
+    reg = A[topo[K]]
+    topo[k]--
+}
+}
+
+
+
+
+
+
+
+
+i 
+was 
+ridding 
+shotgun 
+with my 
+hair undone 
+in the frot 
+seat of his
+car
+he had one 
+hand on the 
+steering wheel 
+and the other 
+on my heart

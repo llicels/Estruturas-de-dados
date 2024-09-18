@@ -26,6 +26,30 @@ inserindo no inicio
      cabeça:
         prox = novo elemento
 
+o time atual passa para o lugar do temp
+a = temp
+b = time atual
+
+a = b
+
+a.prox = temp.prox
+
+a.ant = temp
+
+temp.prox = a
+
+temp.ant = b.ant
+
+
+
+
+
+
+
+
+
+
+
 removendo no fim:
     fim = anterior da cabeça
 
