@@ -32,7 +32,7 @@ typedef struct el
     struct el*prox; 
 }ELEMENTO;
 
-typedef struct filaDin
+typedef struct
 {
     ELEMENTO *inicio;
     ELEMENTO *fim;
@@ -60,7 +60,7 @@ void exibir(FILA *f){
         printf("%d ", atual->reg.chave);
         atual = atual->prox;
     }
-    printf(" [fim]");
+    printf(" [fim]\n");
 }
 
 bool enfileirar(FILA *f, REGISTRO reg){
@@ -74,9 +74,9 @@ bool enfileirar(FILA *f, REGISTRO reg){
         f->inicio = novo;
     }
     else{
-    f->fim->prox = novo;
-    f->fim = novo;
+        f->fim->prox = novo;
     }
+    f->fim = novo;
 
     return true;    
 }
@@ -97,7 +97,7 @@ bool desenfileirar(FILA *f, REGISTRO *reg){
 
 void reinicialiazr(FILA *f){
     ELEMENTO *atual = f->inicio;
-    while(atual != NULL){
+    while(atual){
         ELEMENTO *apagar = atual;
         atual = atual->prox;
         free(apagar);
@@ -125,19 +125,19 @@ int main(){
     }
 
 
-    // //desenfileirando:
-    // for (int i = 0; i < 8; i++)
-    // {
-    //     REGISTRO reg;
-    //     bool funciona = desenfileirar(&aFila, &reg);
-    //     exibir(&aFila);
+    //desenfileirando:
+    for (int i = 0; i < 8; i++)
+    {
+        REGISTRO reg;
+        bool funciona = desenfileirar(&aFila, &reg);
+        exibir(&aFila);
 
-    //     if (funciona){
-    //         printf("\nElemento desenfileirado %d!\n", reg.chave);
-    //     } else{
-    //         printf("\nFila estava fazia, nada a remover!\n");
-    //     }
-    // }
+        if (funciona){
+            printf("\nElemento desenfileirado %d!\n", reg.chave);
+        } else{
+            printf("\nFila estava fazia, nada a remover!\n");
+        }
+    }
 
     reinicialiazr(&aFila);
     return 0;
