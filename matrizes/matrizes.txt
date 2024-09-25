@@ -1,0 +1,14 @@
+n elementos
+n-1 elementos
+n-2 elementos
+.
+.
+.
+n-(i-1) elementos (offset_i = n-(i-2)+n-(i-3)....+(n-1+n) = (i-1)(n+n-(i-2))/2 = (i-1)(2n-i+2)/2)
+1 elemento
+
+xxxxx
+xxxx
+xxx
+xx
+x
