@@ -1,0 +1,50 @@
+BUSCA (linear, binaria)
+
+2, 8, 12, 15, 20, 23, 30
+
+linear: vetor não ordenado ou ordenado
+binaria: vetor ordenado
+
+na lista ligada, a busca binaria nao funciona, poois o posicionamento físico é  diferente do posicionamento lógico, dessa forma não é possível calcular o meio
+
+arvores são estruturas nao lineares, devido suas bifurcações
+    assim, existem arvores binarias de busca
+
+- a arvore não necessariamente precisa seguir uma ordem
+- um pai pode ter apenas um filho
+
+Nomenclaturas:
+    - raiz (nó que não possui nenhum nó "chegando" nele) (grau 0)
+    - nós pai e filho
+    - nós ancestrais e descendentes
+    - grau do nó\profundidade (qtd de arestas até chegar no nó)
+    - altura do nó (conceito paracido com nó, porem debaixo para cima) (a altura é sempre o maior caminho)
+    - altura da árvore = altura da raiz
+    - podem existir subarvores
+    - largura (separa os graus em conjuntos, o tamanho do maior conjunto é a largura da árvore)
+
+Arvores n-árias
+    - cada nó pode ter no máximo n filhos
+    - pode ser completa ou incompleta (nós que tem filhos, mas não o numero maximo possível)
+
+uma arvore de binaria de nivel n  
+    nº de elementos = 1+2+4+... = 2^0+2^1+2^2....2^n = somatório 2^{i} = 2^{n+1}-1
+
+nº de elementos numa arvore n-aria completa:
+    1+10+100+...+1nzeros = 10^0 + 10^1 + 10^2...
+    9*(1+10+100+...) = (9+90+900+...) = (10^{n+1}-1)/9
+
+    em geral:
+        n^{nivel+1} - 1/(n-1)
+    
+formas de percorrer a arvore (arvores binarias):
+    - pre-ordem (executa, esquerda, direita)
+    - em ordem (esquerda, executa, direita)
+    - pos-ordem (esquerd, direita, executa)
+
+em nó podem ser feitas as seguintes operacoes:
+    - ir para o filho da esquerda
+    - ir para o filho da direita
+    - executar o procimento desejado
+
+*simulando prints em pré-ordem*
