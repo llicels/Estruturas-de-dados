@@ -1,3 +1,4 @@
+//esse codigo ta bem bugado O.O
 #include <stdlib.h>
 #include <stdio.h>
 
